@@ -30,18 +30,16 @@ const GameCard: FC<Props> = ({ game }) => {
     return (
         <Card id={`game-card-${id}`} shadow="sm" padding="lg" radius="md" withBorder>
             <div className="cursor-pointer" role="button" aria-label="Open game details" onClick={handleDetailsClick}>
-                <Title order={3}>{formattedStartDate}</Title>
-                <div className="flex">
-                    <Title order={4}>{location.name}</Title>
-                </div>
+                <Title order={3} className="mb-2">
+                    {formattedStartDate}
+                </Title>
+                <Title order={4}>{location.name}</Title>
+                <Text size="sm">{location.address}</Text>
                 <div className="flex my-2">
                     <div className="flex-grow">
-                        <Text size="sm">
-                            <p>Start: {formattedStartDate}</p>
-                            <p>Duration: {durationInMinutes} minutes</p>
-                            <p>Address: {location.address}</p>
-                            <p>Confirmed Players: {confirmedPlayers.length}</p>
-                        </Text>
+                        <Text size="sm">{durationInMinutes} minutes</Text>
+
+                        <Text size="sm">Confirmed Players: {confirmedPlayers.length}</Text>
                     </div>
 
                     <div className="self-center pl-8">
@@ -50,9 +48,9 @@ const GameCard: FC<Props> = ({ game }) => {
                         </Text>
                     </div>
                 </div>
+                <Badge color="grey">Players Needed</Badge>
             </div>
-            <Badge color="grey">Players Needed</Badge>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-2">
                 <Group>
                     <Tooltip {...sharedTooltipProps} label="Decline">
                         <Button color="red" mt="md" radius="md" variant="default">

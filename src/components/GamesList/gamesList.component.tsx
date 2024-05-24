@@ -1,6 +1,7 @@
+import { Title } from '@mantine/core';
 import GameCard from 'components/GameCard';
 import type { FC } from 'react';
-import { Game } from 'types';
+import type { Game } from 'types';
 
 type Props = {
     games: Array<Game>;
@@ -8,11 +9,14 @@ type Props = {
 
 const GamesList: FC<Props> = ({ games }) => {
     return (
-        <div className="flex flex-col gap-4 my-6">
-            {games.map(game => (
-                <GameCard key={game.id} game={game} />
-            ))}
-        </div>
+        <>
+            <Title order={2}>Upcoming Games</Title>
+            <div className="flex flex-wrap justify-center gap-4 my-6 mx-4">
+                {games.map(game => (
+                    <GameCard key={game.id} game={game} />
+                ))}
+            </div>
+        </>
     );
 };
 

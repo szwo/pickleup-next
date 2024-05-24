@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 import type { AppProps } from 'next/app';
 import type { FC } from 'react';
 import { MantineProvider } from '@mantine/core';
+import DefaultLayout from 'components/DefaultLayout';
 import { theme } from 'lib/mantineTheme';
 
 import '@mantine/core/styles.css';
@@ -21,7 +22,9 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <MantineProvider theme={theme} defaultColorScheme="dark">
             <main className={`${primaryFont.variable} font-sans`}>
-                <Component props={pageProps} />
+                <DefaultLayout>
+                    <Component props={pageProps} />
+                </DefaultLayout>
             </main>
         </MantineProvider>
     );
