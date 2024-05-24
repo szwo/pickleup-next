@@ -1,7 +1,11 @@
 import { Inter } from 'next/font/google';
 import type { AppProps } from 'next/app';
-import 'styles/globals.css';
 import type { FC } from 'react';
+import { MantineProvider } from '@mantine/core';
+import { theme } from 'lib/mantineTheme';
+
+import '@mantine/core/styles.css';
+import 'styles/globals.css';
 
 // Using next/font instead of a manual setup, we get:
 // - significantly easier setup
@@ -15,9 +19,11 @@ const primaryFont = Inter({
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
-        <main className={`${primaryFont.variable} font-sans`}>
-            <Component props={pageProps} />
-        </main>
+        <MantineProvider theme={theme}>
+            <main className={`${primaryFont.variable} font-sans`}>
+                <Component props={pageProps} />
+            </main>
+        </MantineProvider>
     );
 };
 

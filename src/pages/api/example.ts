@@ -1,5 +1,6 @@
-import { SocialPost, sampleData } from 'lib/sampleData';
+import { sampleData } from 'lib/sampleGameData';
 import { NextApiRequest, NextApiResponse } from 'next';
+import type { Game } from 'types';
 
 const simulateAsync = async <T>(result: T) => {
     return new Promise<T>(resolve => {
@@ -12,7 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(400).json({ error: 'Bad request' });
     }
 
-    const data = await simulateAsync<Array<SocialPost>>(sampleData);
+    const data = await simulateAsync<Array<Game>>(sampleData);
 
     return res.status(200).json({ data });
 };
