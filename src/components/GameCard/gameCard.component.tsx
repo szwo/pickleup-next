@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import type { Game } from 'types';
-import { Card, Text, Badge, Button, Group, Tooltip, type TooltipProps } from '@mantine/core';
+import { Card, Text, Badge, Button, Group, Tooltip, type TooltipProps, Title } from '@mantine/core';
+import dayjs from 'dayjs';
 
 type Props = {
     game: Game;
@@ -20,27 +21,37 @@ const sharedTooltipProps: Partial<TooltipProps> = {
 const GameCard: FC<Props> = ({ game }) => {
     const { id, start, durationInMinutes, location, confirmedPlayers } = game;
 
+    const formattedStartDate = dayjs(start).format('dddd M/D h:mma');
+
+    const handleDetailsClick = () => {
+        console.log('clicked on game id: ', id);
+    };
+
     return (
-        <Card shadow="sm" padding="lg" radius="md" withBorder>
-            <Group justify="space-between" mb="xs">
-                <Text fw={500}>{location.name}</Text>
-                <Badge color="grey">Players Needed</Badge>
-            </Group>
-            <div className="flex my-2">
-                <div className="flex-grow">
-                    <Text size="sm">
-                        <p>Start: {start}</p>
-                        <p>Duration: {durationInMinutes} minutes</p>
-                        <p>Address: {location.address}</p>
-                        <p>Confirmed Players: {confirmedPlayers.length}</p>
-                    </Text>
+        <Card id={`game-card-${id}`} shadow="sm" padding="lg" radius="md" withBorder>
+            <div className="cursor-pointer" role="button" aria-label="Open game details" onClick={handleDetailsClick}>
+                <Title order={3}>{formattedStartDate}</Title>
+                <div className="flex">
+                    <Title order={4}>{location.name}</Title>
                 </div>
-                <div className="self-center pl-8">
-                    <Text size="lg">
-                        <i className="fa-solid fa-chevron-right" />
-                    </Text>
+                <div className="flex my-2">
+                    <div className="flex-grow">
+                        <Text size="sm">
+                            <p>Start: {formattedStartDate}</p>
+                            <p>Duration: {durationInMinutes} minutes</p>
+                            <p>Address: {location.address}</p>
+                            <p>Confirmed Players: {confirmedPlayers.length}</p>
+                        </Text>
+                    </div>
+
+                    <div className="self-center pl-8">
+                        <Text size="lg">
+                            <i className="fa-solid fa-chevron-right" />
+                        </Text>
+                    </div>
                 </div>
             </div>
+            <Badge color="grey">Players Needed</Badge>
             <div className="flex justify-center">
                 <Group>
                     <Tooltip {...sharedTooltipProps} label="Decline">
@@ -61,19 +72,6 @@ const GameCard: FC<Props> = ({ game }) => {
                 </Group>
             </div>
         </Card>
-    );
-
-    return (
-        <div
-            id={id}
-            className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-        >
-            <div>
-                <p>
-                    <span className="font-bold">{location.name}</span>
-                </p>
-            </div>
-        </div>
     );
 };
 
