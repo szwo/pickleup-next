@@ -1,6 +1,6 @@
 import { Game, Location, Player } from 'types';
 
-const samplePlayer: Player = {
+export const samplePlayer: Player = {
     id: 'samplePlayer1',
     firstName: 'Simon',
     lastName: 'Wong',

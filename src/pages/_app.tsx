@@ -7,6 +7,7 @@ import { theme } from 'lib/mantineTheme';
 
 import '@mantine/core/styles.css';
 import 'styles/globals.css';
+import UserProvider from 'providers/user/user.provider';
 
 // Using next/font instead of a manual setup, we get:
 // - significantly easier setup
@@ -20,13 +21,15 @@ const primaryFont = Inter({
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
-        <MantineProvider theme={theme} defaultColorScheme="dark">
-            <main className={`${primaryFont.variable} font-sans`}>
-                <DefaultLayout>
-                    <Component props={pageProps} />
-                </DefaultLayout>
-            </main>
-        </MantineProvider>
+        <UserProvider>
+            <MantineProvider theme={theme} defaultColorScheme="dark">
+                <main className={`${primaryFont.variable} font-sans`}>
+                    <DefaultLayout>
+                        <Component props={pageProps} />
+                    </DefaultLayout>
+                </main>
+            </MantineProvider>
+        </UserProvider>
     );
 };
 
