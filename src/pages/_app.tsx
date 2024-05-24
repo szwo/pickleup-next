@@ -1,7 +1,7 @@
-import { Layout } from 'ui/page-directory/layout';
 import { Inter } from 'next/font/google';
-import { AppProps } from 'next/app';
+import type { AppProps } from 'next/app';
 import 'styles/globals.css';
+import type { FC } from 'react';
 
 // Using next/font instead of a manual setup, we get:
 // - significantly easier setup
@@ -13,12 +13,12 @@ const primaryFont = Inter({
     variable: '--primary-font',
 });
 
-export default function App({ Component, pageProps }: AppProps) {
+const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <main className={`${primaryFont.variable} font-sans`}>
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
+            <Component props={pageProps} />
         </main>
     );
-}
+};
+
+export default App;
