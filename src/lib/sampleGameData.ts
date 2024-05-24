@@ -1,4 +1,16 @@
-import { Game, Location } from 'types';
+import { Game, Location, Player } from 'types';
+
+const samplePlayer: Player = {
+    id: 'samplePlayer1',
+    firstName: 'Simon',
+    lastName: 'Wong',
+};
+
+const samplePlayer2: Player = {
+    id: 'samplePlayer2',
+    firstName: 'Oreo',
+    lastName: 'Pet',
+};
 
 const sampleLocation: Location = {
     id: 'randomLocation',
@@ -18,7 +30,7 @@ export const sampleData: Array<Game> = [
         start: '2024-05-30T22:00:00.000Z',
         durationInMinutes: 90,
         location: sampleLocation,
-        confirmedPlayers: [],
+        confirmedPlayers: [samplePlayer],
         tentativePlayers: [],
         declinedPlayers: [],
     },
@@ -27,7 +39,7 @@ export const sampleData: Array<Game> = [
         start: '2024-06-01T18:00:00.000Z',
         durationInMinutes: 60,
         location: sampleLocation2,
-        confirmedPlayers: [],
+        confirmedPlayers: [samplePlayer2],
         tentativePlayers: [],
         declinedPlayers: [],
     },
