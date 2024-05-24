@@ -4,11 +4,6 @@ const sampleLocation: Location = {
     id: 'randomLocation',
     name: 'Bob White Park',
     address: '485 Falcon Rd, Wayne, PA 19087',
-    isIndoors: false,
-    hasLights: true,
-    hasDedicatedPickleball: false,
-    hasBackstop: true,
-    fee: 0,
 };
 
 export const sampleData: Array<Game> = [
@@ -19,5 +14,6 @@ export const sampleData: Array<Game> = [
         location: sampleLocation,
         confirmedPlayers: [],
         tentativePlayers: [],
+        declinedPlayers: [],
     },
 ];

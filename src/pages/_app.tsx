@@ -19,7 +19,7 @@ const primaryFont = Inter({
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
-        <MantineProvider theme={theme}>
+        <MantineProvider theme={theme} defaultColorScheme="dark">
             <main className={`${primaryFont.variable} font-sans`}>
                 <Component props={pageProps} />
             </main>

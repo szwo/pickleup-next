@@ -1,7 +1,6 @@
 import GamesList from 'components/GamesList';
 import { type FC } from 'react';
 import { sampleData } from 'lib/sampleGameData';
-import { Button, Group } from '@mantine/core';
 
 const Home: FC = () => {
     return (
@@ -14,9 +13,6 @@ const Home: FC = () => {
                 Fetch Some Posts!
             </button> */}
             <GamesList games={sampleData} />
-            <Group mt={50} justify="center">
-                <Button size="xl">Demo Mantine</Button>
-            </Group>
         </div>
     );
 };

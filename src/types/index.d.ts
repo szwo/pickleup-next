@@ -2,18 +2,12 @@ export type Player = {
     id: string;
     firstName: string;
     lastName: string;
-    dupr?: number;
 };
 
 export type Location = {
     id: string;
     name: string;
     address: string;
-    isIndoors: boolean;
-    hasLights: boolean;
-    hasDedicatedPickleball: boolean;
-    hasBackstop: boolean;
-    fee: number;
 };
 
 export type Game = {
@@ -23,4 +17,5 @@ export type Game = {
     location: Location;
     confirmedPlayers: Array<Player>;
     tentativePlayers: Array<Player>;
+    declinedPlayers: Array<Player>;
 };
