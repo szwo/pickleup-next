@@ -6,6 +6,7 @@ const Document: FC = () => {
     return (
         <Html>
             <Head>
+                <script src="https://kit.fontawesome.com/e9f61d020b.js" async crossOrigin="anonymous" />
                 <ColorSchemeScript defaultColorScheme="auto" />
             </Head>
             <body>
