@@ -1,22 +1,19 @@
 import GamesList from 'components/GamesList';
 import { useEffect, useState, type FC } from 'react';
 import { Loader } from '@mantine/core';
+import useSWR from 'swr';
+import { fetcher } from 'lib/fetch';
+import { Game } from 'types';
 
 const Home: FC = () => {
-    const [isLoading, setIsloading] = useState(true);
-    const [gamesList, setGamesList] = useState([]);
+    const { data, isLoading } = useSWR<Array<Game>>('/api/games', fetcher);
+    const [gamesList, setGamesList] = useState<Array<Game>>([]);
 
     useEffect(() => {
-        const fetchGameData = async () => {
-            setIsloading(true);
-            const res = await fetch('/api/games');
-            const data = await res.json();
+        if (!isLoading && data) {
             setGamesList(data);
-            setIsloading(false);
-        };
-
-        fetchGameData();
-    }, []);
+        }
+    }, [isLoading, data]);
 
     return (
         <div className="flex flex-col justify-center items-center">
