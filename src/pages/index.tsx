@@ -4,9 +4,10 @@ import { Loader } from '@mantine/core';
 import useSWR from 'swr';
 import { fetcher } from 'lib/fetch';
 import { Game } from 'types';
+import { API_ROUTES } from 'lib/routes';
 
 const Home: FC = () => {
-    const { data, isLoading } = useSWR<Array<Game>>('/api/games', fetcher);
+    const { data, isLoading } = useSWR<Array<Game>>(API_ROUTES.games, fetcher);
     const [gamesList, setGamesList] = useState<Array<Game>>([]);
 
     useEffect(() => {
