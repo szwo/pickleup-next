@@ -1,8 +1,23 @@
 import GamesList from 'components/GamesList';
-import { type FC } from 'react';
-import { sampleData } from 'lib/sampleGameData';
+import { useEffect, useState, type FC } from 'react';
+import { Loader } from '@mantine/core';
 
 const Home: FC = () => {
+    const [isLoading, setIsloading] = useState(true);
+    const [gamesList, setGamesList] = useState([]);
+
+    useEffect(() => {
+        const fetchGameData = async () => {
+            setIsloading(true);
+            const res = await fetch('/api/games');
+            const data = await res.json();
+            setGamesList(data);
+            setIsloading(false);
+        };
+
+        fetchGameData();
+    }, []);
+
     return (
         <div className="flex flex-col justify-center items-center">
             {/* <button
@@ -11,7 +26,7 @@ const Home: FC = () => {
             >
                 Fetch Some Posts!
             </button> */}
-            <GamesList games={sampleData} />
+            {isLoading ? <Loader /> : <GamesList games={gamesList} />}
         </div>
     );
 };

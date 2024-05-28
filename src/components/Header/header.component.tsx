@@ -9,7 +9,7 @@ const Header: FC = () => {
     const initials = currentUser.firstName.charAt(0) + currentUser.lastName.charAt(0); // TODO: Add safety net
 
     return (
-        <div className={`flex justify-between items-center h-[${FIXED_HEADER_HEIGHT}px] mx-4`}>
+        <div className={`flex justify-between items-center h-full mx-4`}>
             <div>
                 <Text
                     fw={700}

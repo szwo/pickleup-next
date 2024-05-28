@@ -30,17 +30,17 @@ export const sampleData: Array<Game> = [
         start: '2024-05-30T22:00:00.000Z',
         durationInMinutes: 90,
         location: sampleLocation,
-        confirmedPlayers: [samplePlayer],
-        tentativePlayers: [],
-        declinedPlayers: [],
+        players: {
+            [samplePlayer.id]: 'accepted',
+        },
     },
     {
         id: 'randomGame2',
         start: '2024-06-01T18:00:00.000Z',
         durationInMinutes: 60,
         location: sampleLocation2,
-        confirmedPlayers: [samplePlayer2],
-        tentativePlayers: [],
-        declinedPlayers: [],
+        players: {
+            [samplePlayer2.id]: 'accepted',
+        },
     },
 ];

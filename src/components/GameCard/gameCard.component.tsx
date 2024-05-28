@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import type { Game } from 'types';
 import { Card, Text, Badge, Button, Group, Tooltip, type TooltipProps, Title } from '@mantine/core';
 import dayjs from 'dayjs';
+import useCurrentUser from 'hooks/useCurrentUser';
 
 type Props = {
     game: Game;
@@ -19,7 +20,13 @@ const sharedTooltipProps: Partial<TooltipProps> = {
 };
 
 const GameCard: FC<Props> = ({ game }) => {
-    const { id, start, durationInMinutes, location, confirmedPlayers } = game;
+    const { id, start, durationInMinutes, location, players } = game;
+    const currentUser = useCurrentUser();
+
+    const numberConfirmed = Object.values(players).filter(rsvp => rsvp === 'accepted').length;
+    const accepted = players[currentUser.id] === 'accepted';
+    const tentative = players[currentUser.id] === 'tentative';
+    const declined = players[currentUser.id] === 'declined';
 
     const formattedStartDate = dayjs(start).format('dddd M/D h:mma');
 
@@ -38,8 +45,7 @@ const GameCard: FC<Props> = ({ game }) => {
                 <div className="flex my-2">
                     <div className="flex-grow">
                         <Text size="sm">{durationInMinutes} minutes</Text>
-
-                        <Text size="sm">Confirmed Players: {confirmedPlayers.length}</Text>
+                        <Text size="sm">Confirmed Players: {numberConfirmed}</Text>
                     </div>
 
                     <div className="self-center pl-8">
@@ -53,17 +59,17 @@ const GameCard: FC<Props> = ({ game }) => {
             <div className="flex justify-center mt-2">
                 <Group>
                     <Tooltip {...sharedTooltipProps} label="Decline">
-                        <Button color="red" mt="md" radius="md" variant="default">
+                        <Button color="red" mt="md" radius="md" variant={declined ? undefined : 'default'}>
                             <i className="fa-solid fa-x" />
                         </Button>
                     </Tooltip>
                     <Tooltip {...sharedTooltipProps} label="Tentative">
-                        <Button color="yellow" mt="md" radius="md" variant="default">
+                        <Button color="yellow" mt="md" radius="md" variant={tentative ? undefined : 'default'}>
                             <i className="fa-solid fa-question" />
                         </Button>
                     </Tooltip>
                     <Tooltip {...sharedTooltipProps} label="Accept">
-                        <Button color="green" mt="md" radius="md">
+                        <Button color="green" mt="md" radius="md" variant={accepted ? undefined : 'default'}>
                             <i className="fa-solid fa-check" />
                         </Button>
                     </Tooltip>
