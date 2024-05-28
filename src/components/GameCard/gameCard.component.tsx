@@ -1,11 +1,15 @@
 import type { FC } from 'react';
-import type { Game } from 'types';
+import type { Game, RsvpResponse } from 'types';
 import { Card, Text, Badge, Button, Group, Tooltip, type TooltipProps, Title } from '@mantine/core';
 import dayjs from 'dayjs';
 import useCurrentUser from 'hooks/useCurrentUser';
+import { API_ROUTES } from 'lib/routes';
+import { RsvpRequest } from 'pages/api/updateRsvp';
+import { KeyedMutator, mutate } from 'swr';
 
 type Props = {
     game: Game;
+    mutate: KeyedMutator<Game[]>;
 };
 
 const sharedTooltipProps: Partial<TooltipProps> = {
@@ -34,6 +38,26 @@ const GameCard: FC<Props> = ({ game }) => {
         console.log('clicked on game id: ', id);
     };
 
+    const handleRsvpClick = async (type: RsvpResponse) => {
+        const body: RsvpRequest = {
+            gameId: game.id,
+            playerId: currentUser.id,
+            response: type,
+        };
+
+        const init: RequestInit = {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+                accept: 'application/json',
+                'content-type': 'application/json',
+            },
+        };
+
+        await fetch(API_ROUTES.updateRsvp, init);
+        mutate(API_ROUTES.games);
+    };
+
     return (
         <Card id={`game-card-${id}`} shadow="sm" padding="lg" radius="md" withBorder>
             <div className="cursor-pointer" role="button" aria-label="Open game details" onClick={handleDetailsClick}>
@@ -59,17 +83,35 @@ const GameCard: FC<Props> = ({ game }) => {
             <div className="flex justify-center mt-2">
                 <Group>
                     <Tooltip {...sharedTooltipProps} label="Decline">
-                        <Button color="red" mt="md" radius="md" variant={declined ? undefined : 'default'}>
+                        <Button
+                            color="red"
+                            mt="md"
+                            radius="md"
+                            variant={declined ? undefined : 'default'}
+                            onClick={() => handleRsvpClick('declined')}
+                        >
                             <i className="fa-solid fa-x" />
                         </Button>
                     </Tooltip>
                     <Tooltip {...sharedTooltipProps} label="Tentative">
-                        <Button color="yellow" mt="md" radius="md" variant={tentative ? undefined : 'default'}>
+                        <Button
+                            color="yellow"
+                            mt="md"
+                            radius="md"
+                            variant={tentative ? undefined : 'default'}
+                            onClick={() => handleRsvpClick('tentative')}
+                        >
                             <i className="fa-solid fa-question" />
                         </Button>
                     </Tooltip>
                     <Tooltip {...sharedTooltipProps} label="Accept">
-                        <Button color="green" mt="md" radius="md" variant={accepted ? undefined : 'default'}>
+                        <Button
+                            color="green"
+                            mt="md"
+                            radius="md"
+                            variant={accepted ? undefined : 'default'}
+                            onClick={() => handleRsvpClick('accepted')}
+                        >
                             <i className="fa-solid fa-check" />
                         </Button>
                     </Tooltip>
