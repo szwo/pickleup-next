@@ -5,10 +5,11 @@ import dayjs from 'dayjs';
 import useCurrentUser from 'hooks/useCurrentUser';
 import { API_ROUTES } from 'lib/routes';
 import { RsvpRequest } from 'pages/api/updateRsvp';
-import { KeyedMutator, mutate } from 'swr';
+import { KeyedMutator } from 'swr';
 
 type Props = {
     game: Game;
+    isLoading: boolean;
     mutate: KeyedMutator<Game[]>;
 };
 
@@ -23,7 +24,7 @@ const sharedTooltipProps: Partial<TooltipProps> = {
     },
 };
 
-const GameCard: FC<Props> = ({ game }) => {
+const GameCard: FC<Props> = ({ game, isLoading, mutate }) => {
     const { id, start, durationInMinutes, location, players } = game;
     const currentUser = useCurrentUser();
 
@@ -55,7 +56,7 @@ const GameCard: FC<Props> = ({ game }) => {
         };
 
         await fetch(API_ROUTES.updateRsvp, init);
-        mutate(API_ROUTES.games);
+        mutate();
     };
 
     return (
@@ -88,6 +89,7 @@ const GameCard: FC<Props> = ({ game }) => {
                             mt="md"
                             radius="md"
                             variant={declined ? undefined : 'default'}
+                            disabled={isLoading}
                             onClick={() => handleRsvpClick('declined')}
                         >
                             <i className="fa-solid fa-x" />
@@ -99,6 +101,7 @@ const GameCard: FC<Props> = ({ game }) => {
                             mt="md"
                             radius="md"
                             variant={tentative ? undefined : 'default'}
+                            disabled={isLoading}
                             onClick={() => handleRsvpClick('tentative')}
                         >
                             <i className="fa-solid fa-question" />
@@ -110,6 +113,7 @@ const GameCard: FC<Props> = ({ game }) => {
                             mt="md"
                             radius="md"
                             variant={accepted ? undefined : 'default'}
+                            disabled={isLoading}
                             onClick={() => handleRsvpClick('accepted')}
                         >
                             <i className="fa-solid fa-check" />

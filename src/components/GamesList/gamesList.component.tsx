@@ -25,7 +25,7 @@ const GamesList: FC = () => {
             <Title order={2}>Upcoming Games</Title>
             <div className="flex flex-wrap justify-center gap-4 my-6 mx-4">
                 {gamesList.map(game => (
-                    <GameCard key={game.id} game={game} mutate={mutate} />
+                    <GameCard key={game.id} game={game} isLoading={isLoading} mutate={mutate} />
                 ))}
             </div>
         </>
