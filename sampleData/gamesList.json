@@ -1,20 +1,20 @@
 [
-  {
-    "id": "randomGame",
-    "start": "2024-05-30T22:00:00.000Z",
-    "durationInMinutes": 90,
-    "locationId": "randomLocation",
-    "players": {
-      "samplePlayer1": "declined"
+    {
+        "id": "randomGame",
+        "start": "2024-05-30T22:00:00.000Z",
+        "durationInMinutes": 90,
+        "locationId": "randomLocation",
+        "players": {
+            "samplePlayer1": "declined"
+        }
+    },
+    {
+        "id": "randomGame2",
+        "start": "2024-06-01T18:00:00.000Z",
+        "durationInMinutes": 60,
+        "locationId": "randomLocation2",
+        "players": {
+            "samplePlayer2": "accepted"
+        }
     }
-  },
-  {
-    "id": "randomGame2",
-    "start": "2024-06-01T18:00:00.000Z",
-    "durationInMinutes": 60,
-    "locationId": "randomLocation2",
-    "players": {
-      "samplePlayer2": "accepted"
-    }
-  }
 ]

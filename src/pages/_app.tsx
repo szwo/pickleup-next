@@ -1,11 +1,11 @@
-import { Inter } from 'next/font/google';
-import type { AppProps } from 'next/app';
-import type { FC } from 'react';
 import { MantineProvider } from '@mantine/core';
 import DefaultLayout from 'components/DefaultLayout';
 import { theme } from 'lib/mantineTheme';
+import type { AppProps } from 'next/app';
+import { Inter } from 'next/font/google';
 import LocationsProvider from 'providers/locations.provider';
 import UserProvider from 'providers/user.provider';
+import type { FC } from 'react';
 
 import '@mantine/core/styles.css';
 import 'styles/globals.css';

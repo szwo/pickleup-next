@@ -1,5 +1,5 @@
 {
-    // "parser": "@typescript-eslint/parser",
+    "parser": "@typescript-eslint/parser",
     "plugins": ["react", "react-hooks", "@typescript-eslint"],
     "extends": [
         "eslint:recommended",
@@ -24,5 +24,5 @@
             "version": "detect",
         },
     },
-    "ignorePatterns": ["**/*.d.ts", "*.js", "**/*.json"],
+    "ignorePatterns": ["**/*.d.ts", "sampleData/*"],
 }

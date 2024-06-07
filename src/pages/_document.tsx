@@ -1,5 +1,5 @@
 import { ColorSchemeScript } from '@mantine/core';
-import { Html, Head, Main, NextScript } from 'next/document';
+import { Head, Html, Main, NextScript } from 'next/document';
 import type { FC } from 'react';
 
 const Document: FC = () => {

@@ -1,6 +1,6 @@
+import { getGamesList, saveGamesList } from 'lib/file.helper';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import type { RsvpResponse } from 'types';
-import { getGamesList, saveGamesList } from 'lib/file.helper';
 
 export type RsvpRequest = {
     gameId: string;

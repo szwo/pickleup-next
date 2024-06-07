@@ -1,5 +1,5 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import { getGamesList } from 'lib/file.helper';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 const simulateAsync = async <T>(result: T) => {
     return new Promise<T>(resolve => {

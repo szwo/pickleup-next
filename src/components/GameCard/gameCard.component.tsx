@@ -1,12 +1,12 @@
-import type { FC } from 'react';
-import type { Game, RsvpResponse } from 'types';
-import { Card, Text, Badge, Button, Group, Tooltip, type TooltipProps, Title } from '@mantine/core';
+import { Badge, Button, Card, Group, Text, Title, Tooltip, type TooltipProps } from '@mantine/core';
 import dayjs from 'dayjs';
 import useCurrentUser from 'hooks/useCurrentUser';
+import useLocations from 'hooks/useLocations';
 import { API_ROUTES } from 'lib/routes';
 import { RsvpRequest } from 'pages/api/updateRsvp';
+import type { FC } from 'react';
 import { KeyedMutator } from 'swr';
-import useLocations from 'hooks/useLocations';
+import type { Game, RsvpResponse } from 'types';
 
 type Props = {
     game: Game;

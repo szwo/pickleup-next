@@ -1,6 +1,6 @@
-import sampleUserData from '../../sampleData/users.json';
 import { createContext, useEffect, useState, type FC, type ReactNode } from 'react';
 import { Player } from 'types';
+import sampleUserData from '../../sampleData/users.json';
 
 export type UserContextType = Player;
 
