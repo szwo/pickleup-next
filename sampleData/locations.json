@@ -1,0 +1,12 @@
+{
+    "randomLocation": {
+        "id": "randomLocation",
+        "name": "Bob White Park",
+        "address": "485 Falcon Rd, Wayne, PA 19087"
+    },
+    "randomLocation2": {
+        "id": "randomLocation2",
+        "name": "Teegarden Park",
+        "address": "440 Old State Rd, Berwyn, PA 19312"
+    }
+}

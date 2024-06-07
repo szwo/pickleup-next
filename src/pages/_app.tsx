@@ -4,10 +4,11 @@ import type { FC } from 'react';
 import { MantineProvider } from '@mantine/core';
 import DefaultLayout from 'components/DefaultLayout';
 import { theme } from 'lib/mantineTheme';
+import LocationsProvider from 'providers/locations.provider';
+import UserProvider from 'providers/user.provider';
 
 import '@mantine/core/styles.css';
 import 'styles/globals.css';
-import UserProvider from 'providers/user/user.provider';
 
 // Using next/font instead of a manual setup, we get:
 // - significantly easier setup
@@ -25,7 +26,9 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
             <MantineProvider theme={theme} defaultColorScheme="dark">
                 <main className={`${primaryFont.variable} font-sans`}>
                     <DefaultLayout>
-                        <Component props={pageProps} />
+                        <LocationsProvider>
+                            <Component props={pageProps} />
+                        </LocationsProvider>
                     </DefaultLayout>
                 </main>
             </MantineProvider>

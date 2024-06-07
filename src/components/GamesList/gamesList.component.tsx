@@ -7,16 +7,16 @@ import useSWR from 'swr';
 import type { Game } from 'types';
 
 const GamesList: FC = () => {
-    const { data, isLoading, mutate } = useSWR<Array<Game>>(API_ROUTES.games, fetcher);
+    const { data: games, isLoading: isLoadingGames, mutate } = useSWR<Array<Game>>(API_ROUTES.games, fetcher);
     const [gamesList, setGamesList] = useState<Array<Game>>([]);
 
     useEffect(() => {
-        if (!isLoading && data) {
-            setGamesList(data);
+        if (!isLoadingGames && games) {
+            setGamesList(games);
         }
-    }, [isLoading, data]);
+    }, [isLoadingGames, games]);
 
-    if (isLoading) {
+    if (isLoadingGames) {
         return <Loader />;
     }
 
@@ -25,7 +25,7 @@ const GamesList: FC = () => {
             <Title order={2}>Upcoming Games</Title>
             <div className="flex flex-wrap justify-center gap-4 my-6 mx-4">
                 {gamesList.map(game => (
-                    <GameCard key={game.id} game={game} isLoading={isLoading} mutate={mutate} />
+                    <GameCard key={game.id} game={game} isLoading={isLoadingGames} mutate={mutate} />
                 ))}
             </div>
         </>

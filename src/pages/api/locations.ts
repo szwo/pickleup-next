@@ -1,10 +1,9 @@
-import { sampleData } from 'lib/sampleGameData';
 import { NextApiRequest, NextApiResponse } from 'next';
-import type { Game } from 'types';
+import { getLocations } from 'lib/file.helper';
 
 const simulateAsync = async <T>(result: T) => {
     return new Promise<T>(resolve => {
-        setTimeout(() => resolve(result), 3000);
+        setTimeout(() => resolve(result), 0);
     });
 };
 
@@ -13,9 +12,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(400).json({ error: 'Bad request' });
     }
 
-    const data = await simulateAsync<Array<Game>>(sampleData);
+    const locations = getLocations();
+    const data = await simulateAsync(locations);
 
-    return res.status(200).json({ data });
+    return res.status(200).json(data);
 };
 
 export default handler;

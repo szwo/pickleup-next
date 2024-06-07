@@ -16,6 +16,6 @@ export type Game = {
     id: string;
     start: string; // ISO String
     durationInMinutes: number;
-    location: Location;
+    locationId: string;
     players: Record<Player['id'], RsvpResponse>;
 };

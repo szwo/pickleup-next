@@ -1,4 +1,4 @@
-import { UserContext } from 'providers/user/user.provider';
+import { UserContext } from 'providers/user.provider';
 import { useContext } from 'react';
 
 const useCurrentUser = () => {

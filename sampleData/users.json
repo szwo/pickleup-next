@@ -1,0 +1,12 @@
+{
+    "samplePlayer1": {
+        "id": "samplePlayer1",
+        "firstName": "Simon",
+        "lastName": "Wong"
+    },
+    "samplePlayer2": {
+        "id": "samplePlayer2",
+        "firstName": "Oreo",
+        "lastName": "Pet"
+    }
+}

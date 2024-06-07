@@ -6,6 +6,7 @@ import useCurrentUser from 'hooks/useCurrentUser';
 import { API_ROUTES } from 'lib/routes';
 import { RsvpRequest } from 'pages/api/updateRsvp';
 import { KeyedMutator } from 'swr';
+import useLocations from 'hooks/useLocations';
 
 type Props = {
     game: Game;
@@ -25,7 +26,10 @@ const sharedTooltipProps: Partial<TooltipProps> = {
 };
 
 const GameCard: FC<Props> = ({ game, isLoading, mutate }) => {
-    const { id, start, durationInMinutes, location, players } = game;
+    const { id, start, durationInMinutes, locationId, players } = game;
+    const locations = useLocations();
+
+    const location = locations[locationId];
     const currentUser = useCurrentUser();
 
     const numberConfirmed = Object.values(players).filter(rsvp => rsvp === 'accepted').length;

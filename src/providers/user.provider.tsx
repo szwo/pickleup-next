@@ -1,4 +1,4 @@
-import { samplePlayer } from 'lib/sampleGameData';
+import sampleUserData from '../../sampleData/users.json';
 import { createContext, useEffect, useState, type FC, type ReactNode } from 'react';
 import { Player } from 'types';
 
@@ -16,7 +16,7 @@ const UserProvider: FC<Props> = ({ children }) => {
     const [currentUser, setCurrentUser] = useState<UserContextType>();
 
     useEffect(() => {
-        setCurrentUser(samplePlayer);
+        setCurrentUser(sampleUserData.samplePlayer1);
         setIsLoading(false);
     }, []);
 
