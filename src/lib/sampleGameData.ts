@@ -1,5 +1,5 @@
 import { Game, Location, Player } from 'types';
-import gamesList from './sampleData/gamesList.json';
+import gamesList from '../..//sampleData/gamesList.json';
 
 export const samplePlayer: Player = {
     id: 'samplePlayer1',
