@@ -1,20 +1,20 @@
-import { Html, Head, Main, NextScript } from 'next/document';
+import { ColorSchemeScript } from '@mantine/core';
+import { Head, Html, Main, NextScript } from 'next/document';
+import type { FC } from 'react';
 
-export default function Document() {
+const Document: FC = () => {
     return (
         <Html>
             <Head>
-                <link href="/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
-                <link href="/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
-                <link href="/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
-                <link href="/favicon/site.webmanifest" rel="manifest" />
-                <link color="#000000" href="/favicon/safari-pinned-tab.svg" rel="mask-icon" />
-                <link href="/favicon/favicon.ico" rel="shortcut icon" />
+                <script src="https://kit.fontawesome.com/e9f61d020b.js" async crossOrigin="anonymous" />
+                <ColorSchemeScript defaultColorScheme="auto" />
             </Head>
-            <body className="bg-gray-1100 overflow-y-scroll bg-[url('/grid.svg')]">
+            <body>
                 <Main />
                 <NextScript />
             </body>
         </Html>
     );
-}
+};
+
+export default Document;

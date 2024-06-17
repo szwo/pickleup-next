@@ -5,8 +5,8 @@
         "dev": "next dev --turbo",
         "lint": "next lint",
         "lint-staged": "lint-staged",
-        "format": "prettier --write --ignore-unknown '{src,public}/**/*'",
-        "format:check": "prettier --check --ignore-unknown '{src,public}/**/*'",
+        "format": "prettier --write '{src,public}/**/*.{ts,tsx,css,scss,html,json,yml}'",
+        "format:check": "prettier --check '{src,public}/**/*.{ts,tsx,css,scss,html,json,yml}'",
         "start": "next start",
         "update": "npm-check -u"
     },
@@ -18,55 +18,38 @@
         "*.{ts,tsx}": "eslint"
     },
     "dependencies": {
-        "@heroicons/react": "^2.0.18",
-        "clsx": "^2.0.0",
-        "date-fns": "^2.30.0",
-        "dinero.js": "2.0.0-alpha.8",
-        "ms": "3.0.0-canary.1",
-        "next": "^14.0.0",
-        "react": "18.2.0",
-        "react-dom": "18.2.0",
-        "server-only": "0.0.1",
-        "styled-components": "6.0.0-beta.2",
-        "use-count-up": "3.0.1"
+        "@mantine/core": "^7.10.0",
+        "@mantine/hooks": "^7.10.0",
+        "clsx": "^2.1.1",
+        "dayjs": "^1.11.11",
+        "next": "^14.1.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "swr": "^2.2.5"
     },
     "devDependencies": {
-        "@tailwindcss/forms": "^0.5.6",
-        "@tailwindcss/typography": "^0.5.10",
-        "@types/ms": "^0.7.33",
-        "@types/node": "^20.8.9",
-        "@types/react": "^18.2.33",
-        "@types/react-dom": "^18.2.14",
-        "@typescript-eslint/eslint-plugin": "^6.9.0",
+        "@tailwindcss/forms": "^0.5.7",
+        "@tailwindcss/typography": "^0.5.13",
+        "@types/node": "^20.11.13",
+        "@types/react": "^18.2.48",
+        "@types/react-dom": "^18.2.18",
+        "@typescript-eslint/eslint-plugin": "^6.21.0",
         "@vercel/git-hooks": "1.0.0",
-        "autoprefixer": "^10.4.16",
-        "eslint": "^8.52.0",
+        "autoprefixer": "^10.4.19",
+        "eslint": "^8.57.0",
         "eslint-config-next": "^14.0.0",
-        "eslint-config-prettier": "9.0.0",
-        "eslint-plugin-react": "7.33.2",
-        "lint-staged": "^15.0.2",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-react": "^7.34.1",
+        "lint-staged": "^15.2.4",
         "npm-check": "^6.0.1",
-        "postcss": "^8.4.31",
-        "prettier": "^3.0.3",
-        "prettier-plugin-tailwindcss": "^0.5.6",
-        "tailwindcss": "^3.3.5",
-        "typescript": "^5.2.2"
-    },
-    "prettier": {
-        "arrowParens": "avoid",
-        "bracketSpacing": true,
-        "printWidth": 120,
-        "semi": true,
-        "singleQuote": true,
-        "tabWidth": 4,
-        "trailingComma": "es5",
-        "overrides": [
-            {
-                "files": "*.yml",
-                "options": {
-                    "tabWidth": 2
-                }
-            }
-        ]
+        "postcss": "^8.4.38",
+        "postcss-preset-mantine": "^1.15.0",
+        "postcss-simple-vars": "^7.0.1",
+        "prettier": "^3.2.5",
+        "prettier-plugin-organize-imports": "^3.2.4",
+        "prettier-plugin-sort-json": "^4.0.0",
+        "prettier-plugin-tailwindcss": "^0.5.11",
+        "tailwindcss": "^3.4.3",
+        "typescript": "^5.3.3"
     }
 }

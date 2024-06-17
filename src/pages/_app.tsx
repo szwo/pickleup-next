@@ -1,6 +1,13 @@
-import { Layout } from 'ui/page-directory/layout';
+import { MantineProvider } from '@mantine/core';
+import DefaultLayout from 'components/DefaultLayout';
+import { theme } from 'lib/mantineTheme';
+import type { AppProps } from 'next/app';
 import { Inter } from 'next/font/google';
-import { AppProps } from 'next/app';
+import LocationsProvider from 'providers/locations.provider';
+import UserProvider from 'providers/user.provider';
+import type { FC } from 'react';
+
+import '@mantine/core/styles.css';
 import 'styles/globals.css';
 
 // Using next/font instead of a manual setup, we get:
@@ -13,12 +20,20 @@ const primaryFont = Inter({
     variable: '--primary-font',
 });
 
-export default function App({ Component, pageProps }: AppProps) {
+const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
-        <main className={`${primaryFont.variable} font-sans`}>
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
-        </main>
+        <UserProvider>
+            <MantineProvider theme={theme} defaultColorScheme="dark">
+                <main className={`${primaryFont.variable} font-sans`}>
+                    <DefaultLayout>
+                        <LocationsProvider>
+                            <Component props={pageProps} />
+                        </LocationsProvider>
+                    </DefaultLayout>
+                </main>
+            </MantineProvider>
+        </UserProvider>
     );
-}
+};
+
+export default App;
