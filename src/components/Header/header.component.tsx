@@ -1,13 +1,10 @@
-import { Avatar, Text } from '@mantine/core';
-import useCurrentUser from 'hooks/useCurrentUser';
+import { Text } from '@mantine/core';
 import type { FC } from 'react';
+import UserAvatar from './UserAvatar';
 
 export const FIXED_HEADER_HEIGHT = 60; // Fixed header height in pixels
 
 const Header: FC = () => {
-    const currentUser = useCurrentUser();
-    const initials = currentUser.firstName.charAt(0) + currentUser.lastName.charAt(0); // TODO: Add safety net
-
     return (
         <div className={`flex justify-between items-center h-full mx-4`}>
             <div>
@@ -22,9 +19,7 @@ const Header: FC = () => {
                 </Text>
             </div>
             <div>
-                <Avatar className="cursor-pointer" component="button">
-                    {initials}
-                </Avatar>
+                <UserAvatar />
             </div>
         </div>
     );
