@@ -1,6 +1,6 @@
+import { SignedIn, UserButton } from '@clerk/nextjs';
 import { Text } from '@mantine/core';
 import type { FC } from 'react';
-import UserAvatar from './UserAvatar';
 
 export const FIXED_HEADER_HEIGHT = 60; // Fixed header height in pixels
 
@@ -18,8 +18,10 @@ const Header: FC = () => {
                     PickleUp
                 </Text>
             </div>
-            <div>
-                <UserAvatar />
+            <div className="flex flex-col justify-center">
+                <SignedIn>
+                    <UserButton />
+                </SignedIn>
             </div>
         </div>
     );

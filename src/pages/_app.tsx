@@ -1,3 +1,4 @@
+import { ClerkProvider } from '@clerk/nextjs';
 import { MantineProvider } from '@mantine/core';
 import DefaultLayout from 'components/DefaultLayout';
 import { theme } from 'lib/mantineTheme';
@@ -22,17 +23,19 @@ const primaryFont = Inter({
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
-        <UserProvider>
-            <MantineProvider theme={theme} defaultColorScheme="dark">
-                <main className={`${primaryFont.variable} font-sans`}>
-                    <DefaultLayout>
-                        <LocationsProvider>
-                            <Component props={pageProps} />
-                        </LocationsProvider>
-                    </DefaultLayout>
-                </main>
-            </MantineProvider>
-        </UserProvider>
+        <ClerkProvider>
+            <UserProvider>
+                <MantineProvider theme={theme} defaultColorScheme="dark">
+                    <main className={`${primaryFont.variable} font-sans`}>
+                        <DefaultLayout>
+                            <LocationsProvider>
+                                <Component props={pageProps} />
+                            </LocationsProvider>
+                        </DefaultLayout>
+                    </main>
+                </MantineProvider>
+            </UserProvider>
+        </ClerkProvider>
     );
 };
 

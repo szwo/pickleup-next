@@ -1,10 +1,16 @@
+import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
 import GamesList from 'components/GamesList';
 import { type FC } from 'react';
 
 const Home: FC = () => {
     return (
         <div className="flex flex-col justify-center items-center">
-            <GamesList />
+            <SignedOut>
+                <SignInButton />
+            </SignedOut>
+            <SignedIn>
+                <GamesList />
+            </SignedIn>
         </div>
     );
 };
