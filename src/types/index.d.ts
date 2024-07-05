@@ -1,7 +1,7 @@
 export type Player = {
     id: string;
-    firstName: string;
-    lastName: string;
+    firstName: string | null;
+    lastName: string | null;
 };
 
 export type Location = {

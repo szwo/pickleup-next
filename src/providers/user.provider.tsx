@@ -1,7 +1,6 @@
 import { useAuth, useUser } from '@clerk/nextjs';
 import { createContext, useEffect, useState, type FC, type ReactNode } from 'react';
 import { Player } from 'types';
-import sampleUserData from '../../sampleData/users.json';
 
 export type UserContextType = Player;
 
@@ -13,23 +12,24 @@ type Props = {
 };
 
 const UserProvider: FC<Props> = ({ children }) => {
-    const { isLoaded, userId, sessionId } = useAuth();
-    const { user } = useUser();
-    const [isLoading, setIsLoading] = useState(true);
+    const { isLoaded: isAuthLoaded, userId, sessionId } = useAuth();
+    const { isLoaded: isUserLoaded, user } = useUser();
+    const isLoaded = isAuthLoaded && isUserLoaded;
+
     const [currentUser, setCurrentUser] = useState<UserContextType>();
 
     useEffect(() => {
-        setCurrentUser(sampleUserData.samplePlayer1);
-        setIsLoading(false);
-    }, []);
-
-    useEffect(() => {
-        if (isLoaded && userId && user) {
-            console.log({ userId, sessionId, user });
+        if (isLoaded && isUserLoaded && userId && user) {
+            const player: Player = {
+                id: userId,
+                firstName: user.firstName,
+                lastName: user.lastName,
+            };
+            setCurrentUser(player);
         }
-    }, [isLoaded, userId, sessionId, user]);
+    }, [isLoaded, isUserLoaded, userId, sessionId, user]);
 
-    if (isLoading) {
+    if (!isLoaded) {
         return null;
     }
 
